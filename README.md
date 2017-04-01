@@ -12,7 +12,7 @@ $ cd DSN
 ```
 Next launch a python session in the DSN directory
 
-```python
+```
 $ python
 >>> from warp import Warp
 ```
@@ -39,7 +39,7 @@ ref_img_path = "/remote/storage/clint/MVT/QA/100307_fa0.nii.gz"
 Specify the path to the streamlines in native space and the output path you would like the warped streamlines to be saved.
 ```
 native_trk = "/home/clint/Desktop/4dnii/100307/100307_10thous.trk.gz"
-warped_trk = "/home/clint/Desktop/4dnii/100307/100307_10thous.trk.gz"
+warped_trk = "/home/clint/Desktop/4dnii/100307/warped_100307_10thous.trk.gz"
 ```
 To warp streamlines call Warp with the following path parameters:
 ```
