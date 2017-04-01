@@ -1,7 +1,7 @@
 # DSN
 Direct Streamline Normalization (DSN)
 
-DSN overcomes both of the limitations of traditional reorientation approaches for spatially normalization diffusion data. DSN directly warps the subject's streamlines into the template space using the deformation fields from the normalization, avoiding the problem of generating tracts from distorted diffusion information. With DSN, DWI's can be acquired with any desired sampling scheme. Diffusion tensors, FODs, or ODFs can also be reconstructed using any desired method and streamlines generated using any algorithm. DSN has minimal influence on tract structure and topologic organization with no significant difference in network density and assortativity with only very small to small effect sizes after normalization. 
+DSN overcomes both of the limitations of traditional reorientation approaches for spatially normalization diffusion data. DSN directly warps the subject's streamlines into the template space using the deformation fields from the normalization, avoiding the problem of generating tracts from distorted diffusion information. With DSN, DWI's can be acquired with any desired sampling scheme. Diffusion tensors, FODs, or ODFs can also be reconstructed using any desired method and streamlines generated using any algorithm. DSN has minimal influence on tract structure and topologic organization with no significant difference in network density and assortativity with only very small to small effect sizes after normalization. DSN also includes methods for warping native space parcellations directly into the template space, avoiding resampling artifacts introudced from nearest-neighbor interpolation.
 
 ## Installation
 Download the current version of DSN and enter its directory:
@@ -16,10 +16,10 @@ Next launch a python session in the DSN directory
 $ python
 >>> from warp import Warp
 ```
-This will import the Warp class and the necessary methods for warping streamlines and parcellations directly into the template space. Currrently only TrackVis (.trk, trk.gz) and NIFTI (.nii, .nii.gz) are supported. Support for .tck (mrTRIX) and .vtk (Camino, MITK) is in development.
+This will import the Warp class and the necessary methods for warping streamlines and parcellations directly into the template space. Currrently only TrackVis (.trk, trk.gz) and NIFTI (.nii, .nii.gz) are supported. Support for .tck (mrTRIX) and .vtk (Camino, MITK) are in development.
 
 ## Define paths
-The path to the template volume, ANTs, and the associated output transforms from subject space to template space must be specified for both streamlines and parcellations 
+The path to the template volume, ANTs, and the associated output transforms from subject space to template space must be specified for both streamline and parcellation warping.
 
 ```
 template_path = "/remote/storage/clint/MVT/MVT_template2.nii.gz" # path to template
