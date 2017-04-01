@@ -16,6 +16,7 @@ def coords2indices(coors, dims):
 	return inds
 
 def warp_parcels(par_path,par_out,t_aff,t_warp,ants_path,template_path):
+    print "Warping parcellation " + par_path
     GM = nib.load(par_path)
     gm = GM.get_data()
     dims = GM.get_header()['dim'][1:4]
@@ -57,7 +58,7 @@ def warp_parcels(par_path,par_out,t_aff,t_warp,ants_path,template_path):
     to_transform = np.hstack([ants_warped_coords,np.ones((ants_warped_coords.shape[0],1))])
     new_voxels = (np.dot(np.linalg.inv(adjusted_affine),to_transform.T) + warped_affine[0,0])[:3]
     new_voxels = np.round(new_voxels)
-    o_label = np.array([o_coords[3,:]])
+    o_label = np.array(np.int16([o_coords[3,:]]))
     os.chdir(orig_dir)
     
     new_wp = np.zeros_like(gm) # assign native space labels to appropriate template spac voxels
@@ -66,3 +67,4 @@ def warp_parcels(par_path,par_out,t_aff,t_warp,ants_path,template_path):
         
     new_wp_nib = nib.Nifti1Image(new_wp, GM.affine)
     nib.save(new_wp_nib,par_out)
+    print "Finished " + par_out
