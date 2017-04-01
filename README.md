@@ -25,7 +25,7 @@ The path to the template volume, ANTs, and the associated output transforms from
 template_path = "/remote/storage/clint/MVT/MVT_template2.nii.gz" # path to template
 ants_path = "/home/clint/antsbin/bin" # path to ANTs
 t_aff = "/remote/storage/clint/MVT/MVT_100307_T1w_Warped0Affine.txt" # path to affine transform
-t_warp = "/remote/storage/clint/MVT/inverses/MVT_100307_T1w_Warped0InverseWarp.nii.gz" # path to deformation field
+t_warp = "/remote/storage/clint/MVT/inverses/MVT_100307_T1w_Warped0InverseWarp.nii.gz" # path to deformation
 ```
 
 It is necessary to also specifiy the path to a native space reference volume where the native streamlines were constructed for streamline warping.
