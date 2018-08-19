@@ -22,7 +22,7 @@ def transform_pts(pts, t_aff, t_warp, ref_img_path, ants_path, template_path,
     orig_dir = os.getcwd()
 
     warped_csv_out = "warped_output.csv"
-    transforms = "-t [" + str(t_aff[0]) + ", 1] " + "-t " + str(t_warp[0])
+    transforms = "-t [" + str(t_aff) + ", 1] " + "-t " + str(t_warp)
 
     # Load the volume from DSI Studio
     ref_img = nib.load(ref_img_path)
@@ -45,7 +45,7 @@ def transform_pts(pts, t_aff, t_warp, ref_img_path, ants_path, template_path,
     os.system(ants_path + "/antsApplyTransformsToPoints " + \
               "-d 3 " + \
               "-i " + warped_csv_out + \
-              " -o aattp.csv " + transforms
+              " -o " + orig_dir + "/aattp.csv " + transforms
               )
     # Load template to get output space
     template = nib.load(template_path)
@@ -55,7 +55,7 @@ def transform_pts(pts, t_aff, t_warp, ref_img_path, ants_path, template_path,
     adjusted_affine[0] = -adjusted_affine[0]
     adjusted_affine[1] = -adjusted_affine[1]
 
-    ants_warped_coords = np.loadtxt("aattp.csv", 
+    ants_warped_coords = np.loadtxt(orig_dir + "/aattp.csv", 
             skiprows=1, delimiter=",")[:,:3]
     os.remove("aattp.csv")
     to_transform = np.hstack([ants_warped_coords,np.ones((ants_warped_coords.shape[0],1))])

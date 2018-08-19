@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 """
-Created on Mon Mar 27 14:02:38 2017
+Please cite Greene, C., Cieslak, M., & Grafton, S. T. (2017). Effect of different spatial normalization approaches on tractography and structural brain networks. Network Neuroscience, 1-19. if you use DSN in your research. 
 
-@author: clint
+Thanks, Clint Greene
 """
 import numpy as np
 import nibabel as nib
@@ -21,14 +20,14 @@ class Warp(object):
     
     def streamlines(self):
         if not self.file_in.endswith((".trk",".trk.gz")):
-            print "File format currently unsupported."
+            print ("File format currently unsupported.")
             return
         
         if self.ref_img_path == "":
-            print "Specify reference image path: .ref_img_path = path to reference image"
+            print ("Specify reference image path: .ref_img_path = path to reference image")
             return
             
-        print "Warping streamline file " + self.file_in
+        print ("Warping streamline file " + self.file_in)
         template = nib.load(self.template_path)
         warped_affine = template.affine
         dims = template.header.get_data_shape()
@@ -71,11 +70,11 @@ class Warp(object):
         new_hdr = template_trk_header.copy()
         new_hdr["n_count"] = len(_streams)
         nib.trackvis.write(self.file_out,[(tx_points[a:b],None,None) for a,b in zip(starts,stops)],hdr_mapping=new_hdr)
-        print "Finished " + self.file_out    
+        print ("Finished " + self.file_out) 
         
     def parcellation(self):
         if not self.file_in.endswith((".nii",".nii.gz")):
-            print "File format currently unsupported. Convert to NIFTI."
+            print ("File format currently unsupported. Convert to NIFTI.")
             return
             
         warp_parcels(self.file_in,self.file_out,self.t_aff,self.t_warp,self.ants_path,self.template_path)

@@ -3,7 +3,7 @@ import nibabel as nib
 import os
 
 def warp_parcels(par_path,par_out,t_aff,t_warp,ants_path,template_path):
-    print "Warping parcellation " + par_path
+    print ("Warping parcellation " + par_path)
     GM = nib.load(par_path)
     gm = GM.get_data()
 
@@ -46,4 +46,4 @@ def warp_parcels(par_path,par_out,t_aff,t_warp,ants_path,template_path):
 
     new_wp_nib = nib.Nifti1Image(new_wp, GM.affine)
     nib.save(new_wp_nib,par_out)
-    print "Finished " + par_out
+    print ("Finished " + par_out)

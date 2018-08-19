@@ -4,7 +4,7 @@ Direct Streamline Normalization (DSN)
 DSN overcomes both of the limitations of traditional reorientation approaches for spatially normalization diffusion data. DSN directly warps the subject's streamlines into the template space using the deformation fields from the normalization, avoiding the problem of generating tracts from distorted diffusion information. With DSN, DWI's can be acquired with any desired sampling scheme. Diffusion tensors, FODs, or ODFs can also be reconstructed using any desired method and streamlines generated using any algorithm. DSN has minimal influence on tract structure and topologic organization with no significant difference in network density and assortativity with only very small to small effect sizes after normalization. DSN also includes methods for warping native space parcellations directly into the template space, avoiding resampling artifacts introudced from nearest-neighbor interpolation.
 
 ## Installation
-Download the current version of DSN and enter its directory:
+DSN requires scipy, numpy, nibabel. These can be easily installed using: pip install scipy numpy nibabel. To use DSN, download the current version of DSN and enter its directory:
 
 ```bash
 $ git clone https://github.com/clintg6/DSN.git
@@ -64,6 +64,10 @@ To warp the parcellation:
 ```
 wP.parcellation()
 ```
+
+Cite
+========
+[Greene, C., Cieslak, M., & Grafton, S. T. (2017). Effect of different spatial normalization approaches on tractography and structural brain networks. Network Neuroscience, 1-19.](https://www.mitpressjournals.org/doi/abs/10.1162/NETN_a_00035)
 
 Credits
 ========
