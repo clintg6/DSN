@@ -27,7 +27,7 @@ def transform_pts(pts, t_aff, t_warp, ref_img_path, ants_path, template_path,
     # Load the volume from DSI Studio
     ref_img = nib.load(ref_img_path)
     voxel_size = np.array(ref_img.header.get_zooms())
-    extents = np.array(ref_img.get_shape())
+    extents = np.array(ref_img.shape)
     extents[-1] = 0
 
     # Convert the streamlines to voxel indices, then to ants points
@@ -76,7 +76,7 @@ def transform_pts(pts, t_aff, t_warp, ref_img_path, ants_path, template_path,
         lps_voxels = new_voxels.copy()
         lps_voxels[0] = template_extents[0] - lps_voxels[0]
         lps_voxels[1] = template_extents[1] - lps_voxels[1]
-        lps_voxmm = lps_voxels.T * np.array(template.get_header().get_zooms())
+        lps_voxmm = lps_voxels.T * np.array(template.header.get_zooms())[:3]
         return lps_voxmm
 
 
